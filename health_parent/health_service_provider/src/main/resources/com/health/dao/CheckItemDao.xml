@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.health.dao.CheckItemDao">
+    <!--新增-->
+
+    <insert id="add" parameterType="com.health.pojo.CheckItem">
+        INSERT INTO
+            t_checkitem
+            (code, name, sex, age, price, type, attention, remark)
+        VALUES
+               (#{code},#{name},#{sex},#{age},#{price},#{type},#{attention},#{remark})
+    </insert>
+
+    <select id="selectByCondition" parameterType="String" resultType="com.health.pojo.CheckItem">
+        select * from t_checkitem
+            <if test="value !=null and value.length > 0">
+                where code = #{value} or name = #{value}
+            </if>
+    </select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
