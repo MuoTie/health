@@ -5,6 +5,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.health.constant.PageResult;
 import com.health.constant.QueryPageBean;
+import com.health.constant.Result;
 import com.health.dao.CheckItemDao;
 import com.health.pojo.CheckItem;
 import com.health.service.CheckItemService;
@@ -37,6 +38,25 @@ public class CheckItemServiceImpl implements CheckItemService {
         long total = page.getTotal();
         List<CheckItem> rows = page.getResult();
         return new PageResult(total,rows);
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        Long count = checkItemDao.findCountByCheckItemId(id);
+        if(count > 0){
+            throw new RuntimeException();
+        }
+        checkItemDao.deleteById(id);
+    }
+
+    @Override
+    public void edit(CheckItem checkItem) {
+        checkItemDao.edit(checkItem);
+    }
+
+    @Override
+    public CheckItem findById(Integer id) {
+        return checkItemDao.findById(id);
     }
 
 
