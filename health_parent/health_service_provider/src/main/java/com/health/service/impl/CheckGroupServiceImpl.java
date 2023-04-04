@@ -30,14 +30,7 @@ public class CheckGroupServiceImpl implements CheckGroupService {
 
         Integer checkGroupId = checkGroup.getId();
 
-        if(checkitemIds != null && checkitemIds.length >0){
-            for (Integer checkitemId : checkitemIds){
-                Map<String ,Integer> map = new HashMap<>();
-                map.put("checkgroupId",checkGroupId);
-                map.put("checkitemId",checkitemId);
-                checkGroupDao.setCheckGroupAndCheckItem(map);
-            }
-        }
+        this.setCheckGroupAndCheckItem(checkGroupId, checkitemIds );
     }
 
     @Override
@@ -56,5 +49,31 @@ public class CheckGroupServiceImpl implements CheckGroupService {
     public CheckGroup findById(Integer id) {
 
         return checkGroupDao.findById(id);
+    }
+
+    @Override
+    public List<Integer> findCheckItemIdByCheckGroupId(Integer id) {
+
+        return checkGroupDao.findCheckItemIdByCheckGroupId(id);
+    }
+
+    @Override
+    public void edit(CheckGroup checkGroup, Integer[] checkitemIds) {
+         checkGroupDao.edit(checkGroup);
+         checkGroupDao.deleteAssoication(checkGroup.getId());
+
+        Integer checkGroupId = checkGroup.getId();
+        this.setCheckGroupAndCheckItem(checkGroupId, checkitemIds );
+
+    }
+    public void setCheckGroupAndCheckItem(Integer checkGroupId, Integer[] checkitemIds){
+        if(checkitemIds != null && checkitemIds.length > 0){
+            for ( Integer checkitemId : checkitemIds ){
+                Map<String , Integer> map = new HashMap<>();
+                map.put("checkgroupId",checkGroupId);
+                map.put("checkitemId",checkitemId);
+                checkGroupDao.setCheckGroupAndCheckItem(map);
+            }
+        }
     }
 }

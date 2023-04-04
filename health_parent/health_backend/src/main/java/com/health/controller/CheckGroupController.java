@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 
 
 @RestController
@@ -46,7 +47,29 @@ public class CheckGroupController {
             e.printStackTrace();
             return new Result(false ,MessageConstant.QUERY_CHECKGROUP_FAIL);
         }
+    }
 
+    @RequestMapping("/findCheckItemIdByCheckGroupId")
+    public Result findCheckItemIdByCheckGroupId(Integer id){
+        try{
+            List<Integer> checkItemIds = checkGroupService.findCheckItemIdByCheckGroupId(id);
+            return new Result(true,MessageConstant.QUERY_CHECKITEM_SUCCESS,checkItemIds);
 
+        }catch (Exception e){
+            e.printStackTrace();
+            return new Result(false,MessageConstant.QUERY_CHECKITEM_FAIL);
+        }
+
+    }
+    @RequestMapping("/edit")
+    public Result edit(@RequestBody CheckGroup checkGroup, Integer[] checkitemIds){
+
+        try{
+            checkGroupService.edit(checkGroup,checkitemIds);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new Result(false,MessageConstant.EDIT_CHECKGROUP_FAIL);
+        }
+        return new Result(true,MessageConstant.EDIT_CHECKGROUP_SUCCESS);
     }
 }

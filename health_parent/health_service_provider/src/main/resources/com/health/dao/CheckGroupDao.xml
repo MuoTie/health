@@ -17,6 +17,33 @@
         insert into t_checkgroup_checkitem (checkitem_id,checkgroup_id)
         values (#{checkitemId},#{checkgroupId})
     </insert>
+    <update id="edit" parameterType="com.health.pojo.CheckGroup">
+        update t_checkgroup
+        <set>
+            <if test="code != null">
+                code = #{code},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="helpCode != null">
+                helpCode = #{helpCode},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="remark != null">
+                remark = #{remark},
+            </if>
+            <if test="attention != null">
+                attention = #{attention}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+    <delete id="deleteAssoication" parameterType="integer" >
+        delete from t_checkgroup_checkitem where checkgroup_id = #{id}
+    </delete>
 
     <select id="findByCondition" parameterType="string" resultType="com.health.pojo.CheckGroup">
         select * from t_checkgroup
@@ -30,6 +57,9 @@
              t_checkgroup
         where
               id= #{id}
+    </select>
+    <select id="findCheckItemIdByCheckGroupId" parameterType="Integer" resultType="Integer">
+        select checkitem_id from t_checkgroup_checkitem where checkgroup_id = #{id}
     </select>
 </mapper>
 

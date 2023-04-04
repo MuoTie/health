@@ -284,6 +284,19 @@
         methods: {
             //编辑
             handleEdit() {
+                axios.post("/checkgroup/edit.do?checkitemIds=" + this.checkitemIds,this.formData).then((res)=>{
+                    this.dialogFormVisible4Edit = false;
+                    if (res.data.flag){
+                        this.$message({
+                           type:'success',
+                           message: res.data.message
+                        });
+                    }else {
+                        this.$message.error(res.data.message)
+                    }
+                }).finally(()=>{
+                    this.findPage();
+                });
             },
             //添加
             handleAdd() {
@@ -336,6 +349,7 @@
             },
             // 弹出编辑窗口
             handleUpdate(row) {
+                this.activeName= 'first'
                 this.dialogFormVisible4Edit=true;
                 axios.get("/checkgroup/findById.do?id="+row.id).then((res)=>{
                     if(res.data.flag){
@@ -349,7 +363,11 @@
                     if(res.data.flag){
                         this.tableData = res.data.data;
                         axios.get("/checkgroup/findCheckItemIdByCheckGroupId.do?id="+row.id).then((res)=>{
-                            this.checkitemIds = res.data;
+                            if(res.data.flag){
+                                this.checkitemIds = res.data.data;
+                            }else {
+                                this.$message.error(res.data.message)
+                            }
                         });
                     }else {
                         this.$message.error(res.data.message)
