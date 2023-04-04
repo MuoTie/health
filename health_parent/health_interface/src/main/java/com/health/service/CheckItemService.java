@@ -5,6 +5,8 @@ import com.health.constant.QueryPageBean;
 import com.health.constant.Result;
 import com.health.pojo.CheckItem;
 
+import java.util.List;
+
 public interface CheckItemService  {
 
     public void add(CheckItem  checkItem);
@@ -16,4 +18,6 @@ public interface CheckItemService  {
     public void edit(CheckItem checkItem);
 
     public CheckItem findById(Integer id);
+
+    public List<CheckItem> findAll();
 }

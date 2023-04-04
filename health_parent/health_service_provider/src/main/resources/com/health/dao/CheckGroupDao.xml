@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.health.dao.CheckGroupDao">
+
+
+    <insert id="add" parameterType="com.health.pojo.CheckGroup">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
+            select LAST_INSERT_ID()
+        </selectKey>
+
+        insert into t_checkgroup(code, name, helpCode,sex,remark,attention)
+        values (#{code},#{name},#{helpCode},#{sex},#{remark},#{attention})
+    </insert>
+
+    <insert id="setCheckGroupAndCheckItem" parameterType="map" >
+        insert into t_checkgroup_checkitem (checkitem_id,checkgroup_id)
+        values (#{checkitemId},#{checkgroupId})
+    </insert>
+
+    <select id="findByCondition" parameterType="string" resultType="com.health.pojo.CheckGroup">
+        select * from t_checkgroup
+        <if test="value != null and value != '' and value.length >0 ">
+            where code=#{value} or name=#{value} or helpcode=#{value}
+        </if>
+    </select>
+    <select id="findById" parameterType="integer" resultType="com.health.pojo.CheckGroup">
+        select *
+        from
+             t_checkgroup
+        where
+              id= #{id}
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+

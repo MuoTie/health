@@ -29,6 +29,9 @@
     <select id="findById" parameterType="integer"  resultType="com.health.pojo.CheckItem">
         select * from t_checkitem where id = #{id}
     </select>
+    <select id="findAll" resultType="com.health.pojo.CheckItem">
+        select * from t_checkitem
+    </select>
 
     <delete id="deleteById" parameterType="Integer">
         delete from t_checkitem where id= #{id}

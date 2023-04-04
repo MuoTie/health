@@ -233,26 +233,49 @@
         methods: {
             //编辑
             handleEdit() {
+                // this.$refs['dataEditForm'].validate((valid)=>{
+                //     if(valid){
+                //         axios.post("/checkitem/edit.do",this.formData).then((res)=>{
+                //             if(res.data.flag){
+                //                 this.$message({
+                //                     type:'success',
+                //                     message: res.data.message
+                //                 });
+                //             }else {
+                //                 this.$message.error(res.data.message);
+                //             }
+                //         }).finally(()=>{
+                //             this.dialogFormVisible4Edit=false;
+                //             this.findPage();
+                //         });
+                //     }else {
+                //         this.$message.error('表单数据校验失败！')
+                //         return false;
+                //     }
+                // });
+
                 this.$refs['dataEditForm'].validate((valid)=>{
                     if(valid){
                         axios.post("/checkitem/edit.do",this.formData).then((res)=>{
                             if(res.data.flag){
                                 this.$message({
-                                    type:'success',
+                                    type: 'success',
                                     message: res.data.message
                                 });
                             }else {
-                                this.$message.error(res.data.message);
+                                this.$message.error(res.data.message)
                             }
                         }).finally(()=>{
-                            this.dialogFormVisible4Edit=false;
-                            this.findPage();
+                           this.dialogFormVisible4Edit=false;
+                           this.findPage();
                         });
-                    }else {
-                        this.$message.error('表单数据校验失败！')
-                        return false;
+                    }else{
+
+                        this.$message.error('表单校验数据失败');
+                        return false
                     }
-                });
+                })
+
             },
             //添加
             handleAdd() {
@@ -306,7 +329,7 @@
                    if(res.data.flag){
                        this.formData =res.data.data;
                    } else {
-                       this.$message(res.data.message);
+                       this.$message.error(res.data.message);
                    }
                 });
 
