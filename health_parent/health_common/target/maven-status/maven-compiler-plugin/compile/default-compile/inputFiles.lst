@@ -1,3 +1,4 @@
+D:\develop\liam_health\health_parent\health_common\src\main\java\com\health\utils\QiniuUtils.java
 D:\develop\liam_health\health_parent\health_common\src\main\java\com\health\pojo\Menu.java
 D:\develop\liam_health\health_parent\health_common\src\main\java\com\health\pojo\Permission.java
 D:\develop\liam_health\health_parent\health_common\src\main\java\com\health\pojo\Role.java
@@ -6,6 +7,7 @@ D:\develop\liam_health\health_parent\health_common\src\main\java\com\health\cons
 D:\develop\liam_health\health_parent\health_common\src\main\java\com\health\pojo\Member.java
 D:\develop\liam_health\health_parent\health_common\src\main\java\com\health\pojo\Setmeal.java
 D:\develop\liam_health\health_parent\health_common\src\main\java\com\health\pojo\Order.java
+D:\develop\liam_health\health_parent\health_common\src\main\java\com\health\constant\RedisConstant.java
 D:\develop\liam_health\health_parent\health_common\src\main\java\com\health\pojo\CheckGroup.java
 D:\develop\liam_health\health_parent\health_common\src\main\java\com\health\constant\QueryPageBean.java
 D:\develop\liam_health\health_parent\health_common\src\main\java\com\health\pojo\User.java

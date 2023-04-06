@@ -17,4 +17,5 @@ public interface CheckGroupService {
 
     public void edit(CheckGroup checkGroup, Integer[] checkitemIds);
 
+    public List<CheckGroup> findAll();
 }

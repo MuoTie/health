@@ -7,7 +7,6 @@ import com.health.constant.QueryPageBean;
 import com.health.constant.Result;
 import com.health.pojo.CheckGroup;
 import com.health.service.CheckGroupService;
-import com.health.service.CheckItemService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -71,5 +70,15 @@ public class CheckGroupController {
             return new Result(false,MessageConstant.EDIT_CHECKGROUP_FAIL);
         }
         return new Result(true,MessageConstant.EDIT_CHECKGROUP_SUCCESS);
+    }
+    @RequestMapping("/findAll")
+    public Result findAll(){
+        try{
+            List<CheckGroup> list = checkGroupService.findAll();
+            return new Result(true,MessageConstant.QUERY_CHECKGROUP_SUCCESS,list);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new Result(false,MessageConstant.QUERY_CHECKGROUP_FAIL);
+        }
     }
 }

@@ -6,7 +6,6 @@ import com.github.pagehelper.PageHelper;
 import com.health.constant.PageResult;
 import com.health.constant.QueryPageBean;
 import com.health.dao.CheckGroupDao;
-import com.health.dao.CheckItemDao;
 import com.health.pojo.CheckGroup;
 import com.health.service.CheckGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +65,12 @@ public class CheckGroupServiceImpl implements CheckGroupService {
         this.setCheckGroupAndCheckItem(checkGroupId, checkitemIds );
 
     }
+
+    @Override
+    public List<CheckGroup> findAll() {
+        return checkGroupDao.findAll();
+    }
+
     public void setCheckGroupAndCheckItem(Integer checkGroupId, Integer[] checkitemIds){
         if(checkitemIds != null && checkitemIds.length > 0){
             for ( Integer checkitemId : checkitemIds ){

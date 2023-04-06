@@ -61,6 +61,10 @@
     <select id="findCheckItemIdByCheckGroupId" parameterType="Integer" resultType="Integer">
         select checkitem_id from t_checkgroup_checkitem where checkgroup_id = #{id}
     </select>
+    <select id="findAll" resultType="com.health.pojo.CheckGroup">
+        select *
+        from t_checkgroup
+    </select>
 </mapper>
 
 
