@@ -6,6 +6,7 @@ import java.util.Date;
 /**
  * 预约设置
  */
+
 public class OrderSetting implements Serializable{
     private Integer id ;
     private Date orderDate;//预约设置日期
